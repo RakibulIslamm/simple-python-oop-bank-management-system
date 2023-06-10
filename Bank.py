@@ -16,7 +16,7 @@ class Bank:
         self.__customers.append(customer)
         customer.deposit(initial_balance, 'opening deposit')
         self.__balance += initial_balance
-        print("\033[1m" + f'Account created successfully. Your account number is {ac_no}' + "\033[0m")
+        print(f'Account created successfully. Your account number is {ac_no}')
         print(customer)
     
     def deposit(self, ac_no, amount):
@@ -55,7 +55,7 @@ class Bank:
     def get_transactions(self, ac_no):
         user = self.find_a_user(ac_no)
         if user:
-            print('****Transactions****')
+            print('****Transaction History****')
             user.my_transactions()
         else:
             return 'User not found'
@@ -181,7 +181,7 @@ bank.check_total_loan_balance('ABCD-01')
 print('')
 # request loan after loan feature off
 bank.take_loan('213031012501', 10000)
-
+print('')
 # Balance before transfer
 bank.get_balance('213031012501')
 # Transfer balance
