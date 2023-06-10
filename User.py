@@ -17,7 +17,6 @@ class Customer(User):
         self.balance = 0
         self.loan = 0
         self.transaction_history = []
-        self.role = 'customer'
         super().__init__(name, email, phone)
 
 
