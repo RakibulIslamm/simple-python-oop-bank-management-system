@@ -6,6 +6,9 @@ class User():
         self.email = email
         self.phone = phone
 
+    def __repr__(self) -> str:
+        return f'Name: {self.name}, Email: {self.email}, Phone: {self.phone}'
+
 
 class Customer(User):
     def __init__(self, name, email, phone, account_no) -> None:

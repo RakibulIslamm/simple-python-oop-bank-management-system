@@ -6,17 +6,18 @@ class Bank:
         self.address = address
         self.__balance = balance
         self.__total_loan = 0
-        self.customers = []
+        self.__customers = []
         self.__admins = []
-        self.loan_on = True
+        self.__loan_on = True
 
     def create_user_account(self, name, email, phone, initial_balance):
-        ac_no = f'21303101250{len(self.customers)+1}'
+        ac_no = f'21303101250{len(self.__customers)+1}'
         customer = Customer(name, email, phone, ac_no)
-        self.customers.append(customer)
+        self.__customers.append(customer)
         customer.deposit(initial_balance, 'opening deposit')
         self.__balance += initial_balance
         print("\033[1m" + f'Account created successfully. Your account number is {ac_no}' + "\033[0m")
+        print(customer)
     
     def deposit(self, ac_no, amount):
         if amount > 0:
@@ -72,7 +73,7 @@ class Bank:
             print('Your account number or Receiver account is wrong')
 
     def take_loan(self, ac_no, amount):
-        if self.loan_on:
+        if self.__loan_on:
             user = self.find_a_user(ac_no)
             if (amount+user.loan) <= (user.balance * 2):
                 if user:
@@ -111,7 +112,7 @@ class Bank:
     def loan_feature(self, admin_id, isOn):
         admin = self.find_an_admin(admin_id)
         if admin and admin.role == 'admin':
-            self.loan_on = isOn
+            self.__loan_on = isOn
 
     def check_total_loan_balance(self, admin_id):
         admin = self.find_an_admin(admin_id)
@@ -121,7 +122,7 @@ class Bank:
             print('You are not an admin')
 
     def find_a_user(self, ac_no):
-        for user in self.customers:
+        for user in self.__customers:
             if user.account_no == ac_no:
                 return user
         return None
@@ -140,6 +141,7 @@ bank = Bank('Bangladesh Bank', 'MOTIJHEEL DHAKA-1000, 02 Dhaka, Dhaka Division',
 
 # Create user/customer account
 bank.create_user_account('Rakibul Islam', 'rakib@gmail.com', '01234567890', 500)
+print('')
 bank.create_user_account('Phitron', 'phitron@gmail.com', '0342457890', 500)
 
 print('')
